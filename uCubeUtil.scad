@@ -24,7 +24,7 @@
                                    
 */
 
-// Translates an object and makes reflections in axial mirrors
+// Translates an object and makes reflections in axial mirrors 3D
 module trippleMirror(d){
     mirror([0,0,0]) translate(d) children();
     mirror([0,0,1]) translate(d) children();
@@ -34,6 +34,14 @@ module trippleMirror(d){
     mirror([1,0,0]) mirror([0,0,1]) translate(d) children();
     mirror([1,0,0]) mirror([0,1,0]) translate(d) children();
     mirror([[1,0,0]]) mirror([0,1,0]) mirror([0,0,1]) translate(d) children();
+}
+
+// Translates an object and makes reflections in axial mirrors 2D
+module doubleMirror(d){
+   mirror([0,0,0]) translate(d) children();
+   mirror([1,0,0]) translate(d) children();
+   mirror([0,1,0]) translate(d) children();
+   mirror([1,0,0])  mirror([0,1,0]) translate(d) children();
 }
 
 // Makes a 3D corner with a displacement d
