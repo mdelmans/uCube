@@ -5,19 +5,18 @@ Modular 3D-printable optomechanical kit
 
 Include uCube library:
 
-```
-  include<./uCube.scad>
-```
+
+`include<./uCube.scad>`
+
 
 ## Parts
 
-```
-uCube()
-```
+`uCube()`
+
 ![uCube](https://s4.postimg.org/khk39ekb1/Screen_Shot_2016_08_24_at_20_59_55.png)
-```
-uFace()
-```
+
+`uFace()`
+
 ![uFace](https://s13.postimg.org/4rqwmzczr/Screen_Shot_2016_08_24_at_21_02_03.png)
 
 ## Screws
