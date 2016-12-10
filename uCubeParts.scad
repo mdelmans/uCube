@@ -42,7 +42,7 @@ module uRaspberryCam2Face(h = insertL + 1, wallT = 1){
     supportR = 0.5*insertD + wallT;
     difference(){
         union(){
-            uFace();
+            rotate([180,0,0]) uFace();
             translate( [15.5, 0, d/4] ) screwInsertSupport();
             translate( [-15.5, 0, d/4] ) screwInsertSupport();
             translate( [15.5, 12, d/4] ) screwInsertSupport();
@@ -75,7 +75,7 @@ module uLenseFace(supportH = 10, n = 3, lenseD = 25, lenseH = 2, supportD = 6){
     
     difference(){
         union(){
-            uFace();
+            rotate([180,0,0]) uFace();
             uLenseSupport(supportH, n, lenseD, lenseH, supportD);
         }
         cylinder( d/2, holeR, holeR, center = true);
