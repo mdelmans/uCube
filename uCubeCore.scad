@@ -27,7 +27,18 @@
 
 // Hole for a screw insert
 module screwInsert(l=insertL, d=insertD){
-    translate([0,0,-$delta]) cylinder(insertL + 2*$delta, 0.5*insertD, 0.5*insertD);
+    translate([0,0,-$delta]) cylinder(l + 2*$delta, 0.5*d, 0.5*d);
+}
+
+// Support for a screw insert
+module screwInsertSupport( h = insertL, wallT = 1){
+    supportR = 0.5*insertD + wallT;
+
+    difference(){
+        cylinder(h, supportR, supportR );
+        screwInsert(h);
+    }
+  
 }
 
 // Hole for a tapered screw

@@ -1,3 +1,0 @@
-use<./uCube.scad>
-
-uFace();
