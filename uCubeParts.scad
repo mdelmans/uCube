@@ -24,6 +24,39 @@
                                    
 */
 
+module uObjectiveFace(){
+hBase = 20;
+rLock = 15.5;
+hLock = 2.75;
+wallT = 2;
+
+hFree = 20.5;
+hHub  = 5;
+
+rTube = 13.05;
+
+baseGap = 1;
+
+//translate([0, 0, hLock + hBase + hFree - hHub]) gear (circular_pitch=600,
+//	gear_thickness = hHub,
+//    hub_thickness = 10,
+//    bore_thickness = 2,
+//	rim_thickness = hFree,
+//	circles=8, hub_diameter = 2*rTube + wallT, bore_diameter = 2*rTube, number_of_teeth = 20);
+
+
+union(){
+    difference(){
+        rotate([180, 0, 0])uFace();
+        cylinder(d, rLock, rLock, center = true);
+    }
+    translate([0, 0, -0.25*d]) difference(){
+        cylinder(hBase + hLock, rLock + 2*wallT, rLock + 2*wallT);
+        cylinder(hLock + hBase, rLock, rLock);
+    }
+    }
+}
+
 module uTubeLensFace(r1 = 19.2, r2 = 18.2, h1=8){
         union(){
             uFace();
