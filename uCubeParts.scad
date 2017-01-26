@@ -24,8 +24,6 @@
                                    
 */
 
-//use("uCubeCore.scad");
-
 module uTubeLensFace(r1 = 19.2, r2 = 18.2, h1=8){
         union(){
             uFace();
@@ -43,17 +41,17 @@ module uRaspberryCam2Face(h = insertL + 1, wallT = 1){
     difference(){
         union(){
             rotate([180,0,0]) uFace();
-            translate( [15.5, 0, d/4] ) screwInsertSupport();
-            translate( [-15.5, 0, d/4] ) screwInsertSupport();
-            translate( [15.5, 12, d/4] ) screwInsertSupport();
-            translate( [-15.5, 12, d/4] ) screwInsertSupport();
+            translate( [10.5, 0, d/4] ) screwInsertSupport();
+            translate( [-10.5, 0, d/4] ) screwInsertSupport();
+            translate( [10.5, 12.5, d/4] ) screwInsertSupport();
+            translate( [-10.5, 12.5, d/4] ) screwInsertSupport();
         }
-        translate([0, -5, 0]) cube([27, 0.6, d/2], center = true);
+        translate([0, -5, 0]) cube([18, 0.6, d/2 + 0.1], center = true);
     }
 }
 
 
-module uLenseSupport(supportH = 10, n = 3, lenseD = 25, lenseH = 2, supportD = 6){
+module uLenseSupport(supportH = 6, n = 3, lenseD = 25, lenseH = 2, supportD = 6){
     
     lenseR = 0.5*lenseD;
     supportR = 0.5*supportD;
@@ -69,7 +67,7 @@ module uLenseSupport(supportH = 10, n = 3, lenseD = 25, lenseH = 2, supportD = 6
     }
 }
 
-module uLenseFace(supportH = 10, n = 3, lenseD = 25, lenseH = 2, supportD = 6){
+module uLenseFace(supportH = 1, n = 3, lenseD = 25, lenseH = 2, supportD = 6){
     
     holeR = 0.5*lenseD - 1;
     
@@ -78,6 +76,42 @@ module uLenseFace(supportH = 10, n = 3, lenseD = 25, lenseH = 2, supportD = 6){
             rotate([180,0,0]) uFace();
             uLenseSupport(supportH, n, lenseD, lenseH, supportD);
         }
-        cylinder( d/2, holeR, holeR, center = true);
+        cylinder( d/2+0.1, holeR, holeR, center = true);
     }
 }
+
+module uCrossFrameFace(w = 48, l = 58, h = 2, armL = 10, wallT = 1){
+    module base(){
+        cylinder( h, 0.5*insertD + wallT, 0.5*insertD + wallT  );
+    }
+    module halfCross(){
+        hull(){
+            translate([0.5*w, 0.5*l, 0]) base();
+            translate([0.5*w - armL, 0.5*l, 0 ]) base();
+        }
+        hull(){
+            translate([0.5*w - armL, 0.5*l, 0 ]) base();
+            translate([-0.5*w + armL, -0.5*l, 0 ]) base();
+        }
+        hull(){
+            translate([-0.5*w + armL, -0.5*l, 0 ]) base();
+            translate([-0.5*w, -0.5*l, 0 ]) base();
+        }
+    }
+    union(){
+        uFace();
+        rotate([0, 0, 45])translate([0, 0, d/4]) 
+        union(){
+            halfCross();
+            mirror([1,0,0]) halfCross();
+            translate([0.5*w, 0.5*l, h]) screwInsertSupport(wallT = wallT);
+            translate([0.5*w, -0.5*l, h]) screwInsertSupport(wallT = wallT);
+            translate([-0.5*w, 0.5*l, h]) screwInsertSupport(wallT = wallT);
+            translate([-0.5*w, -0.5*l, h]) screwInsertSupport(wallT = wallT);
+        }
+    }
+}
+
+module uRaspberryPiFace(h = 2){
+    uCrossFrameFace(w = 49, l = 58, h = h, armL = 10, wallT = 1 );
+}   
