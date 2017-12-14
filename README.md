@@ -30,7 +30,7 @@ Modules are assemblies of several parts into one µCube. The modules are stored 
 
 ## Getting started
 
-1. Download and install OpenSCAD. You can get the latest version from the official [website](www.openscad.org).
+1. Download and install OpenSCAD. You can get the latest version from the official [website](http://www.openscad.org).
 
 2. Download the uCube library.
 
@@ -61,4 +61,4 @@ The first line creates a new instance of a `Lens` class with a given parameters.
 
 ### Assembly
 
-Please check out the [DocuBricks](www.docubricks.com/projects/ucube) portal for the assembly instructions.
+Please check out the [DocuBricks](http://www.docubricks.com/projects/ucube) portal for the assembly instructions.
