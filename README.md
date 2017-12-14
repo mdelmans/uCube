@@ -1,5 +1,12 @@
-# µCube
-Modular 3D-printable optomechanical kit
+# µCube: A framework for 3D printable optomechanics
+
+uCube is open modular optomechanics kit, which is compatible with 3D printing. The idea behind the project is to create a framework for designing, building and sharing optical modules.
+
+uCube is implemented using OpenSCAD, a programming language for CAD modelling. This allows every component to be described as a parametric model, which can be easily shared in a form of a code.
+
+## Design
+
+The design consist of two core parts: uCube, a structural unit; and uFace, which is used to hold optical components in place. Each uCube accepts six uFaces, one for each side. Each assembled uCube can be thought of as a autonomous optical module, e.g. camera, objective, filter cube, etc. Several uCubes can be assembled together into an optical device, e.g. microscope, telescope, spectrometer, etc.
 
 ## Parts
 
