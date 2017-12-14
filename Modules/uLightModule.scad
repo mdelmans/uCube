@@ -28,8 +28,6 @@ module uLightCube(cubeSize = defaultCubeSize, screw = defaultScrew, moduleType =
 	
 	if (type == "collimator"){
 
-		f = getattr(lens, "f");
-
 		uCubeModule(moduleType = moduleType){
 			// Top
 			uFace();
@@ -41,7 +39,7 @@ module uLightCube(cubeSize = defaultCubeSize, screw = defaultScrew, moduleType =
 			uApertureFaceP( cubeSize = cubeSize, screw = screw, aperture = faceAperture );
 
 			// Left
-			rotate([0, 0, 90]) mirror([0, 0, 1]) uCollimatorFace( cubeSize = cubeSize, screw = screw, starLED = starLED, lens = lens, aperture = LEDAperture, apertureH = apertureH );
+			rotate([0, 0, 90]) mirror([0, 0, 1]) uCollimatorFace( cubeSize = cubeSize, screw = screw, starLED = starLED, lens = collimatingLens, aperture = LEDAperture, apertureH = apertureH );
 
 			// Front
 			uFace();

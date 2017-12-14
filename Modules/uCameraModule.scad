@@ -24,7 +24,7 @@
 									   
 */
 
-module uCameraCube(cubeSize = defaultCubeSize, screw = defaultScrew, moduleType = "explode", type = "t-mount", lens, adapter = TMountAdapter(), cameraOffset = 5){
+module uCameraCube(cubeSize = defaultCubeSize, screw = defaultScrew, moduleType = "explode", type = "photo", lens, adapter = TMountAdapter(), cameraOffset = 5){
 	innerSpace	= getattr(cubeSize, "fullSize") - getattr(cubeSize, "d");
 	defaultH	= 5;
 
