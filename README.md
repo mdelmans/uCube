@@ -1,23 +1,57 @@
-# uCube
+# µCube
 Modular 3D-printable optomechanical kit
-
-## Usage
-
-Include uCube library:
-
-`include<./uCube.scad>`
 
 ## Parts
 
-`uCube()`
+All the parts are stored in the `Parts` folder and groped into files by their function. In addition tge group files store definition of corresponding classes. Currently there are five groups defined in the following files:
 
-![uCube](https://s4.postimg.org/khk39ekb1/Screen_Shot_2016_08_24_at_20_59_55.png)
+* `uCubeCore.scad` : Contains definitions of µCube and µFace.
+* `uAperture.scad` : Apertures.
+* `uLED.scad` : LED-related parts
+* `uLens.scad` : A collection of lens holders
+* `uRaspberryPi.scad` : Raspberry Pi - related parts, includind a Raspberry Pi Camera face.
 
-`uFace()`
+## Modules
 
-![uFace](https://s13.postimg.org/4rqwmzczr/Screen_Shot_2016_08_24_at_21_02_03.png)
+Modules are assemblies of several parts into one µCube. The modules are stored in `Modules` folder.
 
-## Screws
-For attaching uFace to uCube use [Hex Socket Countersunk Stainless Steel Plain Socket Screw, M3 x 6mm] (http://uk.rs-online.com/web/p/socket-screws/3044788/?searchTerm=304-4788&relevancy-data=636F3D3126696E3D4931384E525353746F636B4E756D6265724D504E266C753D656E266D6D3D6D61746368616C6C26706D3D5E283F69292852537C5253207C52532D293F5C647B337D285C73293F5B5C732D2F255C2E2C5D285C73293F5C647B332C347D2426706F3D313426736E3D592673743D52535F53544F434B5F4E554D4245522677633D4E4F4E45267573743D3330342D34373838267374613D3330343437383826)
+* `uCubeModules.scad` : Contains a generic definition of a module, which allows to create explode views, or flat arrangment of parts for 3D printing.
 
-For attaching uCubes toogether use [Hex Socket Countersunk Steel Black, Self-Colour Socket Screw, M3 x 16mm] (http://uk.rs-online.com/web/p/socket-screws/0292423/?searchTerm=292-423&relevancy-data=636F3D3126696E3D4931384E525353746F636B4E756D6265724D504E266C753D656E266D6D3D6D61746368616C6C26706D3D5E283F69292852537C5253207C52532D293F5C647B337D285C73293F5B5C732D2F255C2E2C5D285C73293F5C647B332C347D2426706F3D313426736E3D592673743D52535F53544F434B5F4E554D4245522677633D4E4F4E45267573743D3239322D343233267374613D3032393234323326)
+* `uCameraModule.scad` : Raspberry Pi - based camera module. Comes in three types( "photo", "M12", "thin-lens" ).
+
+* `uLightModule.scad` : A light source module. Comes in thee types ("point", "collimator", "light-guide")
+
+## Getting started
+
+1. Download and install OpenSCAD. You can get the latest version from the official [website](www.openscad.org).
+
+2. Download the uCube library.
+
+3. Open OpenSCAD, create a new file and include the uCube library by typing
+
+```javascript
+include <uCube.scad>
+```
+
+4. You can create a uCube model by typing
+
+```javascript
+uCube();
+```
+5. Hit Render(F6) button. After the rendering is finished, you should see a uCube model ready for export.
+
+6. Press Export as STL button, and send the file for 3D printing.
+
+7. Erase the `uCube();` command and type the following instead:
+
+```javascript
+myLens = Lens(f = 25, r = 12.5, minH = 2, maxH = 5);
+myAperture = Aperture( shape="circle", size = [25, 25] ) 
+uLensFace( lens = lens, aperture = myAperture, supportH = 5 ); 
+```
+
+The first line creates a new instance of a `Lens` class with a given parameters. The second line creates an instance of a circular `Aperture` with a radius matching that of a lens. The third line creates a uFace, with the given aperture, and support for the myLense, positioned 5 mm above the uFace.
+
+### Assembly
+
+Please check out the [DocuBricks](www.docubricks.com/projects/ucube) portal for the assembly instructions.
