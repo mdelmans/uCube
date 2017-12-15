@@ -43,6 +43,7 @@ include <./uCubeUtil.scad>
 // Pats
 include <./Parts/uCubeCore.scad>
 include <./Parts/uAperture.scad>
+include <./Parts/uHolder.scad>
 include <./Parts/uRaspberryPi.scad>
 include <./Parts/uLens.scad>
 include <./Parts/uLED.scad>
@@ -57,8 +58,7 @@ $delta = 0.01;
 
 
 // Default values for the cube parameter
-defaultCubeSize	= CubeSize( size = 40, d = 7, faceGap = 0.4 );
 defaultScrew	= Screw( screwR = 1.75, capR = 3, capH = 2.5, insertH = 5, insertR = 2 );
+defaultCubeSize	= CubeSize( size = 40, d = 7, faceGap = 0.4, screw = defaultScrew );
 
-ledScrew		= Screw( screwR = 1, capR = 2, capH = 1, insertH = 2, insertR = 1);
 

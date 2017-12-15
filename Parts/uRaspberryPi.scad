@@ -24,11 +24,19 @@
 								   
 */
 
-module uCrossFrameFace(cubeSize = defaultCubeSize, screw = defaultScrew, size = [49, 58], h = 2, armL = 10, wallT = 0.6){
+// Generic M2.5 screw
+piScrew = Screw( screwR = 1.5, capR = 2, capH = 1, insertH = 5, insertR = 1.25 ); 
+
+// Generic M2 screw
+piCamScrew = Screw( scewR = 1.25, capR = 1.5, capH = 1, insertH = 5, insertR = 1 );  
+
+defSize = [49,58];
+
+module uCrossFrameFace(cubeSize = defaultCubeSize, screw = defaultScrew, size = defSize, h = 2, armL = 10, wallT = 2){
 	$fn = 100;
 
 	d			= getattr(cubeSize, "d");
-	insertR		= getattr(screw, "insertR");
+	insertR		= getattr(piScrew, "insertR");
 	
 	w			= size[0];
 	l			= size[1];
@@ -53,24 +61,24 @@ module uCrossFrameFace(cubeSize = defaultCubeSize, screw = defaultScrew, size = 
 	}
 
 	union(){
-		uFace(cubeSize = cubeSize, screw = screw);
+		uFace(cubeSize = cubeSize);
 		translate([0, 0, d/4]) 
 		union(){
 			halfCross();
 			mirror([1,0,0]) halfCross();
-			translate([0.5*w, 0.5*l, h]) screwInsertSupport(wallT = wallT);
-			translate([0.5*w, -0.5*l, h]) screwInsertSupport(wallT = wallT);
-			translate([-0.5*w, 0.5*l, h]) screwInsertSupport(wallT = wallT);
-			translate([-0.5*w, -0.5*l, h]) screwInsertSupport(wallT = wallT);
+			translate([0.5*w, 0.5*l, h]) screwInsertSupport(screw = screw, wallT = wallT);
+			translate([0.5*w, -0.5*l, h]) screwInsertSupport(screw = screw, wallT = wallT);
+			translate([-0.5*w, 0.5*l, h]) screwInsertSupport(screw = screw, wallT = wallT);
+			translate([-0.5*w, -0.5*l, h]) screwInsertSupport(screw = screw, wallT = wallT);
 		}
 	}
 }
 
-module uRaspberryPiFace(cubeSize = defaultCubeSize, screw = defaultScrew, h = 2){
+module uRaspberryPiFace(cubeSize = defaultCubeSize, screw = piScrew, h = 2){
 	uCrossFrameFace(cubeSize = cubeSize, screw = screw, size = [49, 58], armL = 10, wallT = 0.6, h = h);
 }
 
-module uRaspberryCam2Face(cubeSize = defaultCubeSize, screw = defaultScrew, h = 5, wallT = 1){
+module uRaspberryCam2Face(cubeSize = defaultCubeSize, screw = piCamScrew, h = 5, wallT = 1){
 	d = getattr(cubeSize, "d");
 	insertR = getattr(screw, "insertR");
 
@@ -78,11 +86,11 @@ module uRaspberryCam2Face(cubeSize = defaultCubeSize, screw = defaultScrew, h = 
 
 	difference(){
 		union(){
-			rotate([180,0,0]) uFace(cubeSize = cubeSize, screw = screw);
-			translate( [10.5, 0, d/4] ) screwInsertSupport(h = h);
-			translate( [-10.5, 0, d/4] ) screwInsertSupport(h = h);
-			translate( [10.5, 12.5, d/4] ) screwInsertSupport(h = h);
-			translate( [-10.5, 12.5, d/4] ) screwInsertSupport(h = h);
+			rotate([180,0,0]) uFace(cubeSize = cubeSize);
+			translate( [10.5, 0, d/4] ) screwInsertSupport(screw = screw, h = h);
+			translate( [-10.5, 0, d/4] ) screwInsertSupport(screw = screw, h = h);
+			translate( [10.5, 12.5, d/4] ) screwInsertSupport(screw = screw, h = h);
+			translate( [-10.5, 12.5, d/4] ) screwInsertSupport(screw = screw, h = h);
 		}
 		translate([0, -5, 0]) cube([18, 0.6, d/2 + 0.1], center = true);
 	}

@@ -10,10 +10,11 @@ The design consist of two core parts: uCube, a structural unit; and uFace, which
 
 ## Parts
 
-All the parts are stored in the `Parts` folder and groped into files by their function. In addition tge group files store definition of corresponding classes. Currently there are five groups defined in the following files:
+All the parts are stored in the `Parts` folder and groped into files by their function. In addition tge group files store definition of corresponding classes. Currently there are six groups defined in the following files:
 
 * `uCubeCore.scad` : Contains definitions of µCube and µFace.
 * `uAperture.scad` : Apertures.
+* `uHolder.scad` : Holders for generic components.
 * `uLED.scad` : LED-related parts
 * `uLens.scad` : A collection of lens holders
 * `uRaspberryPi.scad` : Raspberry Pi - related parts, includind a Raspberry Pi Camera face.

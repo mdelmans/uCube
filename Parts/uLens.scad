@@ -74,7 +74,7 @@ module uLensSupport(cubeSize = defaultCubeSize, lens = Lens(), supportH = 6, sup
 	}
 }
 
-module uLensFaceI(cubeSize = defaultCubeSize, screw = defaultScrew, lens = Lens(), aperture = Aperture(), supportH = 1, supportD = 6, n = 3){
+module uLensFaceI(cubeSize = defaultCubeSize, lens = Lens(), aperture = Aperture(), supportH = 1, supportD = 6, n = 3){
 	
 	lensR	= getattr(lens, "r");
 	d		= getattr(cubeSize, "d");
@@ -83,20 +83,20 @@ module uLensFaceI(cubeSize = defaultCubeSize, screw = defaultScrew, lens = Lens(
 	
 	difference(){
 		union(){
-			rotate([180,0,0]) uFace( cubeSize = cubeSize, screw = screw );
+			rotate([180,0,0]) uFace( cubeSize = cubeSize);
 			uLensSupport(cubeSize = cubeSize, lens = lens, supportH = supportH, supportD = supportD, n = n);
 		}
 		uAperture(aperture = aperture, h = 0.5001*d);
 	}
 }
 
-module uLensFaceC(cubeSize = defaultCubeSize, screw = defaultScrew, lens = Lens(), aperture = Aperture(), supportH = 5, wallT = 1){
+module uLensFaceC(cubeSize = defaultCubeSize, lens = Lens(), aperture = Aperture(), supportH = 5, wallT = 1){
 	lensR	= getattr(lens, "r");
 	d		= getattr(cubeSize, "d");
 	hMin	= getattr(lens, "minH");
 
 	union(){
-		uApertureFaceP(cubeSize = cubeSize, screw = screw, aperture = aperture);
+		uApertureFaceP(cubeSize = cubeSize, aperture = aperture);
 		translate([0, 0, 0.25*d])difference(){
 			cylinder(supportH + hMin, lensR + wallT, lensR + wallT);
 			cylinder(supportH + hMin, lensR - wallT, lensR - wallT);
@@ -121,7 +121,7 @@ module uM12LensFace(cubeSize = defaultCubeSize, screw = defaultScrew, lens = M12
 
 	difference(){
 		union(){
-			rotate([180,0,0]) uFace(cubeSize = cubeSize, screw = screw);
+			rotate([180,0,0]) uFace(cubeSize = cubeSize);
 			translate( [10.5, 0, d/4] ) screwInsertSupport(screw = screw, h = supportH);
 			translate( [-10.5, 0, d/4] ) screwInsertSupport(screw = screw, h = supportH);
 			translate( [10.5, 12.5, d/4] ) screwInsertSupport(screw = screw, h = supportH);
@@ -133,7 +133,7 @@ module uM12LensFace(cubeSize = defaultCubeSize, screw = defaultScrew, lens = M12
 	}
 }
 
-module uTMountFace( cubeSize = defaultCubeSize, screw = defaultScrew, adapter = TMountAdapter(), h = 4, wallT = 1){
+module uTMountFace( cubeSize = defaultCubeSize, adapter = TMountAdapter(), h = 4, wallT = 1){
 
 	size		= getattr(cubeSize, "size");
 	d			= getattr(cubeSize, "d");
@@ -142,7 +142,7 @@ module uTMountFace( cubeSize = defaultCubeSize, screw = defaultScrew, adapter = 
 
 	union(){
 		difference(){
-			uFace( cubeSize = defaultCubeSize, screw = screw );
+			uFace( cubeSize = cubeSize);
 			translate([0, 0, -0.25*d]) cylinder(0.5*d, 0.5*size, 0.5*size);
 		}
 		translate([0, 0, 0.25*d])
@@ -158,7 +158,7 @@ module uTMountFace( cubeSize = defaultCubeSize, screw = defaultScrew, adapter = 
 	}
 }
 
-module uLightGuideFace( cubeSize = defaultCubeSize, screw = defaultScrew, lens = Lens(), lightGuide = LightGuide(), wallT = 1 ){
+module uLightGuideFace( cubeSize = defaultCubeSize, lens = Lens(), lightGuide = LightGuide(), wallT = 1 ){
 	
 	d			= getattr(cubeSize, "d");
 	f			= getattr(lens, "f");

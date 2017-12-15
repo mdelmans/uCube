@@ -63,7 +63,7 @@ module uApertureFaceT(cubeSize = defaultCubeSize, aperture = Aperture(), w = 2){
 		rotate([180,0,0]) uFace(cubeSize = cubeSize);
 		translate([0, 0, 0.5*(h + 0.5*d)]) difference(){
 			cube([size - 2*faceGap, w, h], center = true);
-			translate([0, 0, 0.5*(1.5*d)]) rotate([90, 0, 0]) uAperture( aperture = aperture, h = w );
+			translate([0, 0, 0.5*(1.5*d)]) rotate([90, 0, 0]) uAperture( aperture = aperture, h = w+0.01 );
 		}
 	}
 }

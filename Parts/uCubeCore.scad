@@ -27,12 +27,13 @@
 // Core Classes
 function getattr( obj, key ) = obj[search( [key], obj, num_returns_per_match=1 )[0]][1];
 
-function CubeSize(size = 40, d = 7, faceGap = 0.4) = [
+function CubeSize(size = 40, d = 7, faceGap = 0.4, screw = defaultScrew) = [
     ["size",    size],
     ["d",       d ],
     ["faceGap", faceGap],
     ["fullSize", size + 4*d],
-    ["faceSize", size + 2*d]
+    ["faceSize", size + 2*d],
+    ["screw", defaultScrew]
 ];
 
 function Screw( screwR = 1.5, capR = 3, capH = 2.5, insertH = 5, insertR = 2 ) = [
@@ -76,11 +77,12 @@ module screwHole(screw = defaultScrew, l ){
     }
 }
 
-module uCube(cubeSize = defaultCubeSize, screw = defaultScrew) {
+module uCube(cubeSize = defaultCubeSize) {
     size        = getattr(cubeSize, "size");
     d           = getattr(cubeSize, "d");
     faceGap     = getattr(cubeSize, "faceGap");
     fullSize    = getattr(cubeSize, "fullSize");
+    screw       = getattr(cubeSize, "screw");
 
     difference(){
         union(){
@@ -109,12 +111,13 @@ module uCube(cubeSize = defaultCubeSize, screw = defaultScrew) {
     }
 }
 
-module uFace(cubeSize = defaultCubeSize, screw = defaultScrew){
+module uFace(cubeSize = defaultCubeSize){
     d           = getattr(cubeSize, "d");
     faceGap     = getattr(cubeSize, "faceGap");
     faceSize    = getattr(cubeSize, "faceSize");
+    screw       = getattr(cubeSize, "screw");
 
-     difference(){
+    difference(){
         cube([faceSize - 2*faceGap, faceSize - 2*faceGap, d/2], center = true);
         rotate([0,0,45]) doubleMirror([0.5*(faceSize - 0.5*d)*sin(45), 0.5*(faceSize - 0.5*d)*sin(45), 0]) rotate([0,0,45]) cube([0.5*d + 2*faceGap, 1.5*d + 2*faceGap, 0.5*d], center = true);
         doubleMirror([0.5*(faceSize - d), 0.5*(faceSize - d), -0.25*d]) screwHole(screw = screw, l = 0.5*d);
