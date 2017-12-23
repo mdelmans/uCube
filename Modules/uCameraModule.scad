@@ -86,7 +86,7 @@ module uCameraCube(cubeSize = defaultCubeSize, screw = defaultScrew, moduleType 
 				echo("Warning: lens focus is out of range. Try smaller cameraOffset");
 			}
 			else{
-				mirror([0, 0, 1]) uLensFace(cubeSize = cubeSize, screw = screw, lens = lens, supportH = -tDifference);
+				mirror([0, 0, 1]) uLensFaceC(cubeSize = cubeSize, screw = screw, lens = lens, supportH = -tDifference);
 			}
 
 			// Left

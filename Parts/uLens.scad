@@ -105,7 +105,7 @@ module uLensFaceC(cubeSize = defaultCubeSize, lens = Lens(), aperture = Aperture
 	}
 }
 
-module uM12LensFace(cubeSize = defaultCubeSize, screw = defaultScrew, lens = M12Lens(), wallT = 1){
+module uM12LensFace(cubeSize = defaultCubeSize, screw = piCamScrew, lens = M12Lens(), wallT = 1){
 	
 	insertR = getattr(screw, "insertR");
 	threadH = getattr(lens, "threadH");
