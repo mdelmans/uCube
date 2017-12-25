@@ -128,7 +128,7 @@ module uM12LensFace(cubeSize = defaultCubeSize, screw = piCamScrew, lens = M12Le
 			translate( [-10.5, 12.5, d/4] ) screwInsertSupport(screw = screw, h = supportH);
 			translate([0, 0, -headH - 0.25*d]) cylinder(headH, headR + wallT, headR + wallT);
 		}
-		cylinder(0.5*d+$delta, 6, 6, center = true);
+		cylinder(0.5*d+$delta, 5.8, 5.8, center = true);
 		translate([0, 0, -headH - 0.25*d]) cylinder(headH, headR, headR);
 	}
 }
