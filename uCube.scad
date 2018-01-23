@@ -40,13 +40,14 @@
 
 include <./uCubeUtil.scad>
 
-// Pats
+// Parts
 include <./Parts/uCubeCore.scad>
 include <./Parts/uAperture.scad>
 include <./Parts/uHolder.scad>
 include <./Parts/uRaspberryPi.scad>
 include <./Parts/uLens.scad>
 include <./Parts/uLED.scad>
+include <./Parts/uRails.scad>
 
 // Modules
 include <./Modules/uCubeModules.scad>
