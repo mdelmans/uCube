@@ -54,11 +54,11 @@ uCube();
 
 ```javascript
 myLens = Lens(f = 25, r = 12.5, minH = 2, maxH = 5);
-myAperture = Aperture( shape="circle", size = [25, 25] ) 
-uLensFace( lens = lens, aperture = myAperture, supportH = 5 ); 
+myAperture = Aperture( shape="circle", size = [10, 10] );
+uLensFaceI( lens = myLens, aperture = myAperture, supportH = 5 );
 ```
 
-The first line creates a new instance of a `Lens` class with a given parameters. The second line creates an instance of a circular `Aperture` with a radius matching that of a lens. The third line creates a uFace, with the given aperture, and support for the myLense, positioned 5 mm above the uFace.
+The first line creates a new instance of a `Lens` class with a given parameters. The second line creates an instance of a circular `Aperture` with a 10 mm radius. The third line creates a uFace, with the given aperture, and support for the myLense, positioned 5 mm above the uFace.
 
 ### Assembly
 
