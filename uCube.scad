@@ -61,4 +61,7 @@ $delta = 0.01;
 defaultScrew	= Screw( screwR = 1.75, capR = 3, capH = 2.5, insertH = 5, insertR = 2 );
 defaultCubeSize	= CubeSize( size = 40, d = 7, faceGap = 0.4, screw = defaultScrew );
 
+// Test print sizes
+nullScrew   = Screw(screwR = 0, capR = 0, capH = 0, insertH = 0, insertR = 0);
+testCubeSize	= CubeSize( size = 20, d = 3.5, faceGap = 0.4, screw = nullScrew );
 
