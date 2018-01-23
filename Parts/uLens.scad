@@ -56,21 +56,28 @@ function LightGuide( smallR = 2.6, bigR = 4.8, l = 20 ) = [
 
 module uLensSupport(cubeSize = defaultCubeSize, lens = Lens(), supportH = 6, supportD = 6, n = 3){
 	
+	offset = 1;
+
 	lensR	= getattr(lens, "r");
 	lensH	= getattr(lens, "minH");
 
 	d		= getattr(cubeSize, "d");
 
 	supportR = 0.5*supportD;
-	R = lensR + supportR - 1;    
+	R = lensR + supportR - offset;
+
+	
 	
 	difference(){
 		union(){
 			for ( i=[0:n] ){
-				translate([ R*sin( i*360/n ), R*cos( i*360/n ), d/4  ]) cylinder( supportH + 0.5*lensH + 2, supportR, supportR  );
+				translate([ R*sin( i*360/n ), R*cos( i*360/n ), d/4  ]) cylinder( supportH + lensH + offset, supportR, supportR  );
 			}
 		}
 		translate([0, 0, d/4 + supportH]) cylinder(lensH, lensR, lensR);
+		translate([0, R - supportR, supportH + lensH + d/4 +  offset])rotate([0, -90, 0]) linear_extrude(height = supportD, center = true){
+			polygon([ [0,0], [-0.8*offset,0], [0,2*offset] ]);
+		}
 	}
 }
 
