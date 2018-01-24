@@ -24,19 +24,16 @@
 								   
 */
 
-railScrew = Screw(screwR = 1, capR = 2, capH = 2, insertH = 5, insertR = 2);
-
-function Rail(size = 30, d = 6, screw = railScrew, gap = 0.4) = [
+function Rail(size = 30, d = 6, gap = 0.2) = [
 	["d", d],
-	["screw", screw],
 	["size", size],
 	["gap", gap]
 ];
 
-thorlabsRail = Rail();
+thorlabsRail = Rail(size = 30, d = 6, gap = 0.2);
 
-module railClamp(rail = thorlabsRail, wallT = 2, length = 5, fixScrewR = 1){
-	
+module railClamp(rail = thorlabsRail, wallT = 2, length = 5, fixScrewR = 0.8){
+
 	railR 	= getattr(rail, "d") * 0.5;
 	gap		= getattr(rail, "gap");
 

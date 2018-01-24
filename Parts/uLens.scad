@@ -54,7 +54,13 @@ function LightGuide( smallR = 2.6, bigR = 4.8, l = 20 ) = [
 	["l",		l]
 ];
 
-module uLensSupport(cubeSize = defaultCubeSize, lens = Lens(), supportH = 6, supportD = 6, n = 3){
+defaultLens = Lens(f = 25, r = 12.5, minH = 2, maxH = 5);
+defaultM12Lens = M12Lens(f = 5.4, threadH = 11, headH = 4, headR = 7.2);
+defaultPhotoLens = PhotoLens(ffd = 30);
+defaultTMountAdapter = TMountAdapter(r = 26, h = 6.6);
+defaultLightGuide = LightGuide(smallR = 2.6, bigR = 4.8, l = 20);
+
+module uLensSupport(cubeSize = defaultCubeSize, lens = defaultLens, supportH = 6, supportD = 6, n = 3){
 	
 	offset = 1;
 
@@ -81,7 +87,7 @@ module uLensSupport(cubeSize = defaultCubeSize, lens = Lens(), supportH = 6, sup
 	}
 }
 
-module uLensFaceI(cubeSize = defaultCubeSize, lens = Lens(), aperture = Aperture(), supportH = 1, supportD = 6, n = 3){
+module uLensFaceI(cubeSize = defaultCubeSize, lens = defaultLens, aperture = defaultAperture, supportH = 1, supportD = 6, n = 3){
 	
 	lensR	= getattr(lens, "r");
 	d		= getattr(cubeSize, "d");
@@ -97,7 +103,7 @@ module uLensFaceI(cubeSize = defaultCubeSize, lens = Lens(), aperture = Aperture
 	}
 }
 
-module uLensFaceC(cubeSize = defaultCubeSize, lens = Lens(), aperture = Aperture(), supportH = 5, wallT = 1){
+module uLensFaceC(cubeSize = defaultCubeSize, lens = defaultLens, aperture = defaultAperture, supportH = 5, wallT = 1){
 	lensR	= getattr(lens, "r");
 	d		= getattr(cubeSize, "d");
 	hMin	= getattr(lens, "minH");
@@ -112,7 +118,7 @@ module uLensFaceC(cubeSize = defaultCubeSize, lens = Lens(), aperture = Aperture
 	}
 }
 
-module uM12LensFace(cubeSize = defaultCubeSize, screw = piCamScrew, lens = M12Lens(), wallT = 1){
+module uM12LensFace(cubeSize = defaultCubeSize, screw = piCamScrew, lens = defaultM12Lens, wallT = 1){
 	
 	insertR = getattr(screw, "insertR");
 	threadH = getattr(lens, "threadH");
@@ -140,7 +146,7 @@ module uM12LensFace(cubeSize = defaultCubeSize, screw = piCamScrew, lens = M12Le
 	}
 }
 
-module uTMountFace( cubeSize = defaultCubeSize, adapter = TMountAdapter(), h = 4, wallT = 1){
+module uTMountFace( cubeSize = defaultCubeSize, adapter = defaultTMountAdapter, h = 4, wallT = 1){
 
 	size		= getattr(cubeSize, "size");
 	d			= getattr(cubeSize, "d");
@@ -165,7 +171,7 @@ module uTMountFace( cubeSize = defaultCubeSize, adapter = TMountAdapter(), h = 4
 	}
 }
 
-module uLightGuideFace( cubeSize = defaultCubeSize, lens = Lens(), lightGuide = LightGuide(), wallT = 1 ){
+module uLightGuideFace( cubeSize = defaultCubeSize, lens = defaultLens, lightGuide = defaultLightGuide, wallT = 1 ){
 	
 	d			= getattr(cubeSize, "d");
 	f			= getattr(lens, "f");

@@ -30,7 +30,9 @@ function GenericComponent(shape="circle", size = [10, 10], h = 4) = [
 	["h"	, h]
 ];
 
-module uHolderFaceP( cubeSize = defaultCubeSize, component = GenericComponent(), offset = 0, wallT = 1 ){
+defaultGenericComponent = GenericComponent(shape="circle", size = [10, 10], h = 4);
+
+module uHolderFaceP( cubeSize = defaultCubeSize, component = defaultGenericComponent, offset = 0, wallT = 1 ){
 	d		= getattr(cubeSize, "d");
 
 	shape	= getattr(component, "shape");
@@ -52,7 +54,7 @@ module uHolderFaceP( cubeSize = defaultCubeSize, component = GenericComponent(),
 	}
 }
 
-module uHolderFaceT( cubeSize = defaultCubeSize, component = GenericComponent(), offset = 0, wallT = 1, w = 2 ){
+module uHolderFaceT( cubeSize = defaultCubeSize, component = defaultGenericComponent, offset = 0, wallT = 1, w = 2 ){
 	d		= getattr(cubeSize, "d");
 	size	= getattr(cubeSize, "size");
 	faceGap	= getattr(cubeSize, "faceGap");
@@ -77,7 +79,6 @@ module uHolderFaceT( cubeSize = defaultCubeSize, component = GenericComponent(),
 				translate([0, m*0.5*(cOffset - 0.5*h - 0.5*w ) + $delta, 0.5*(1.5*d) ]) rotate([90,0,0]) uAperture( Aperture(shape = shape, size = [ cSize[0] - 2*wallT, cSize[1] - 2*wallT ]), h = w + cOffset - 0.5*h );
 				translate([0, m*(cOffset + 0.5*w) - $delta,0.5*(1.5*d)]) rotate([90, 0, 0]) uAperture( Aperture(shape = shape, size = cSize), h = h+w );
 				dh = (0.5*cSize[1] + 2 * wallT) - (0.5 * hHolder - 0.5 * (1.5*d) );
-				echo(dh);
 				if (dh > 0){
 					translate([0,0,0.5*(hHolder + dh)]) cube([ size - 2*faceGap, w, dh ], center = true);
 				}
@@ -86,7 +87,7 @@ module uHolderFaceT( cubeSize = defaultCubeSize, component = GenericComponent(),
 	}
 }
 
-module uHolderFace45 (cubeSize = defaultCubeSize, component = GenericComponent(), wallT = 1, w = 2){
+module uHolderFace45 (cubeSize = defaultCubeSize, component = defaultGenericComponent, wallT = 1, w = 2){
 	d		= getattr(cubeSize, "d");
 	size	= getattr(cubeSize, "size");
 	faceGap	= getattr(cubeSize, "faceGap");
@@ -99,7 +100,7 @@ module uHolderFace45 (cubeSize = defaultCubeSize, component = GenericComponent()
 
 	union(){
 		rotate([180,0,0]) uFace(cubeSize = cubeSize);
-		translate([0, 0, 0.5*(hHolder + 0.5*d)]) rotate([0,0,45]){
+		translate([0, 0, 0.5*(hHolder + 0.5*d)]) rotate([0, 0, 135]){
 			difference(){
 				union(){
 					cube([size - 2*faceGap, w, hHolder], center = true);

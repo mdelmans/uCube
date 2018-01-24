@@ -29,6 +29,8 @@ function Aperture( shape="circle", size = [10, 10] ) = [
 	["size" , size]
 ];
 
+defaultAperture = Aperture( shape="circle", size = [10, 10] );
+
 module uAperture( aperture = Aperture(), h, center = true ){
 	
 	shape = getattr(aperture, "shape");

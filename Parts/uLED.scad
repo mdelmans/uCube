@@ -24,10 +24,6 @@
 								   
 */
 
-defaultLEDAperture = Aperture( shape = "circle", size = [1,1] );
-
-ledScrew		= Screw( screwR = 1, capR = 2, capH = 1, insertH = 2, insertR = 1);
-
 function StarLED( screwPosR = 9.5, w = 20, ledH = 2.5, starH = 1.5 ) = [
 	["screwPosR"  , screwPosR],
 	["w"          , w],
@@ -35,7 +31,13 @@ function StarLED( screwPosR = 9.5, w = 20, ledH = 2.5, starH = 1.5 ) = [
 	["starH"      , starH]
 ];
 
-module uLEDFace( cubeSize = defaultCubeSize, screw = ledScrew, starLED = StarLED(), aperture = defaultLEDAperture, apertureHeight = 4, starGap= 1.5, wallT = 1, wireR = 1, wireGrooveL = 5 ){
+defaultLEDAperture = Aperture(shape = "circle", size = [1,1]);
+
+ledScrew		= Screw(screwR = 1, capR = 2, capH = 1, insertH = 2, insertR = 1);
+
+defaultStarLED  = StarLED(screwPosR = 9.5, w = 20, ledH = 2.5, starH = 1.5);
+
+module uLEDFace( cubeSize = defaultCubeSize, screw = ledScrew, starLED = defaultStarLED, aperture = defaultLEDAperture, apertureHeight = 4, starGap= 1.5, wallT = 1, wireR = 1, wireGrooveL = 5 ){
 	screwPosR		= getattr(starLED, "screwPosR");
 	starW			= getattr(starLED, "w");
 	starR			= starW / sqrt(3);
@@ -101,7 +103,7 @@ module uLEDFace( cubeSize = defaultCubeSize, screw = ledScrew, starLED = StarLED
 
 }
 
-module uCollimatorFace(cubeSize = defaultCubeSize, screw = ledScrew, starLED = StarLED(), lens = Lens(), apperture = defaultLEDAperture, appertureHeight = 4, starGap = 1.5, wallT = 1, wireR = 1, wireGrooveL = 5, supportD = 6, n = 3){
+module uCollimatorFace(cubeSize = defaultCubeSize, screw = ledScrew, starLED = defaultStarLED, lens = defaultLens, apperture = defaultLEDAperture, appertureHeight = 4, starGap = 1.5, wallT = 1, wireR = 1, wireGrooveL = 5, supportD = 6, n = 3){
 
 	focus   = getattr(lens, "f");
 	d       = getattr(cubeSize, "d");

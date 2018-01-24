@@ -28,11 +28,11 @@
 piScrew = Screw( screwR = 1.5, capR = 2, capH = 1, insertH = 5, insertR = 1.25 ); 
 
 // Generic M2 screw
-piCamScrew = Screw( scewR = 1.25, capR = 1.5, capH = 1, insertH = 5, insertR = 1 );  
+piCamScrew = Screw( screwR = 1.25, capR = 1.5, capH = 1, insertH = 5, insertR = 1 );  
 
-defSize = [49,58];
+rPi3Size = [49,58];
 
-module uCrossFrameFace(cubeSize = defaultCubeSize, screw = defaultScrew, size = defSize, h = 2, armL = 10, wallT = 2){
+module uCrossFrameFace(cubeSize = defaultCubeSize, screw = defaultScrew, size = rPi3Size, h = 2, armL = 10, wallT = 2){
 	$fn = 100;
 
 	d			= getattr(cubeSize, "d");

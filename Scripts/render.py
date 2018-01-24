@@ -31,6 +31,8 @@ if os.path.exists(pngDir):
 
 os.mkdir(pngDir)
 
+print (bpy.data.materials.keys())
+
 material = bpy.data.materials['Plastic']
 
 for fileName in os.listdir(stlDir):
