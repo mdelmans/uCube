@@ -19,6 +19,8 @@ All the parts are stored in the `Parts` folder and groped into files by their fu
 * `uLens.scad` : A collection of lens holders
 * `uRaspberryPi.scad` : Raspberry Pi - related parts, includind a Raspberry Pi Camera face.
 
+See [Wiki](https://github.com/mdelmans/uCube/wiki) pages for detailed description of parts.
+
 ## Modules
 
 Modules are assemblies of several parts into one µCube. The modules are stored in `Modules` folder.
