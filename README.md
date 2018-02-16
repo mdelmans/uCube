@@ -64,4 +64,4 @@ The first line creates a new instance of a `Lens` class with a given parameters.
 
 ### Assembly
 
-Please check out the [DocuBricks](http://www.docubricks.com/viewer.jsp?id=5359000075023893504) portal for the assembly instructions.
+Please check out the [DocuBricks](http://www.docubricks.com/projects/ucube) portal for the assembly instructions.
