@@ -30,7 +30,7 @@ function Rail(size = 30, d = 6, gap = 0.2) = [
 	["gap", gap]
 ];
 
-thorlabsRail = Rail(size = 30, d = 6, gap = 0.2);
+thorlabsRail = Rail(size = 30, d = 6, gap = 0.1);
 
 module railClamp(rail = thorlabsRail, wallT = 2, length = 5, fixScrewR = 0.8){
 
@@ -44,9 +44,7 @@ module railClamp(rail = thorlabsRail, wallT = 2, length = 5, fixScrewR = 0.8){
 	}
 }
 
-module muRailFaceA(cubeSize = defaultCubeSize, rail = thorlabsRail){
-	
-	screw		= getattr(rail, "screw");
+module muRailFaceA(cubeSize = defaultCubeSize, rail = thorlabsRail, holeR = 1.6){
 	cubeD		= getattr(cubeSize, "d");
 	
 	railSize	= getattr(rail, "size");
@@ -58,10 +56,10 @@ module muRailFaceA(cubeSize = defaultCubeSize, rail = thorlabsRail){
 		else{
 			children(0);
 		}
-		translate([0.5*railSize, 0.5*railSize, 0.25*cubeD]) rotate([180, 0, 0]) screwHole(screw = screw, l = 0.5*cubeD);
-		translate([0.5*railSize, -0.5*railSize, 0.25*cubeD]) rotate([180, 0, 0]) screwHole(screw = screw, l = 0.5*cubeD);
-		translate([-0.5*railSize, 0.5*railSize, 0.25*cubeD]) rotate([180, 0, 0]) screwHole(screw = screw, l = 0.5*cubeD);
-		translate([-0.5*railSize, -0.5*railSize, 0.25*cubeD]) rotate([180, 0, 0]) screwHole(screw = screw, l = 0.5*cubeD);
+		translate([0.5*railSize, 0.5*railSize, 0]) rotate([180, 0, 0]) cylinder(0.5*cubeD + $delta, holeR, holeR, center = true);
+		translate([0.5*railSize, -0.5*railSize, 0]) rotate([180, 0, 0]) cylinder(0.5*cubeD + $delta, holeR, holeR, center = true);
+		translate([-0.5*railSize, 0.5*railSize, 0]) rotate([180, 0, 0]) cylinder(0.5*cubeD + $delta, holeR, holeR, center = true);
+		translate([-0.5*railSize, -0.5*railSize, 0]) rotate([180, 0, 0]) cylinder(0.5*cubeD + $delta, holeR, holeR, center = true);
 	}
 }
 
@@ -84,14 +82,14 @@ module muRailFaceT(cubeSize = defaultCubeSize, rail = thorlabsRail){
 				children(0);
 			}
 
-			translate([0.5*railSize, 0.5*railSize, 0])		cylinder(0.5*cubeD, railR + gap, railR + gap, center = true);
-			translate([0.5*railSize, -0.5*railSize, 0])		cylinder(0.5*cubeD, railR + gap, railR + gap, center = true);
-			translate([-0.5*railSize, 0.5*railSize, 0])		cylinder(0.5*cubeD, railR + gap, railR + gap, center = true);
-			translate([-0.5*railSize, -0.5*railSize, 0])	cylinder(0.5*cubeD, railR + gap, railR + gap, center = true);
+			translate([0.5*railSize, 0.5*railSize + gap, 0])		cylinder(0.5*cubeD + $delta, railR + gap, railR + gap, center = true);
+			translate([0.5*railSize, -0.5*railSize - gap, 0])		cylinder(0.5*cubeD + $delta, railR + gap, railR + gap, center = true);
+			translate([-0.5*railSize, 0.5*railSize + gap, 0])		cylinder(0.5*cubeD + $delta, railR + gap, railR + gap, center = true);
+			translate([-0.5*railSize, -0.5*railSize - gap, 0])	cylinder(0.5*cubeD + $delta, railR + gap, railR + gap, center = true);
 		}
-		translate([0.5*railSize, 0.5*railSize, 0.25*cubeD])		railClamp();
-		translate([0.5*railSize, -0.5*railSize, 0.25*cubeD])	rotate([0, 0, 180]) railClamp();
-		translate([-0.5*railSize, 0.5*railSize, 0.25*cubeD])	railClamp();
-		translate([-0.5*railSize, -0.5*railSize, 0.25*cubeD])	rotate([0, 0, 180]) railClamp();
+		translate([0.5*railSize, 0.5*railSize + gap, 0.25*cubeD])		railClamp();
+		translate([0.5*railSize, -0.5*railSize - gap, 0.25*cubeD])	rotate([0, 0, 180]) railClamp();
+		translate([-0.5*railSize, 0.5*railSize + gap, 0.25*cubeD])	railClamp();
+		translate([-0.5*railSize, -0.5*railSize - gap, 0.25*cubeD])	rotate([0, 0, 180]) railClamp();
 	}
 }

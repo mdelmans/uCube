@@ -82,7 +82,7 @@ module uLensSupport(cubeSize = defaultCubeSize, lens = defaultLens, supportH = 6
 		}
 		translate([0, 0, d/4 + supportH]) cylinder(lensH, lensR, lensR);
 		translate([0, R - supportR, supportH + lensH + d/4 +  offset])rotate([0, -90, 0]) linear_extrude(height = supportD, center = true){
-			polygon([ [0,0], [-0.8*offset,0], [0,2*offset] ]);
+			polygon([ [$delta,0], [-offset,0], [0, supportR] ]);
 		}
 	}
 }
