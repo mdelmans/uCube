@@ -3,5 +3,5 @@ show_downloads: true
 title: µCube
 description: A framework for 3D printable optomechanics
 github:
-  zip_url: https://github.com/mdelmans/uCube/archive/0.1.zip
-  tar_url: https://github.com/mdelmans/uCube/archive/0.1.tar.gz
+  zip_url: https://github.com/mdelmans/uCube/archive/1.0.zip
+  tar_url: https://github.com/mdelmans/uCube/archive/1.0.tar.gz
