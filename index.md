@@ -1,4 +1,6 @@
 ---
 ---
 
-# µCube: A framework for 3D printable optomechanics
+![alt text][logo]
+
+logo: img/device.png
