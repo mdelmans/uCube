@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
 show_downloads: true
-title: µCube ![alt](img/device.png)
+title: µCube
 description: A framework for 3D printable optomechanics
 github:
   zip_url: https://github.com/mdelmans/uCube/archive/1.0.zip

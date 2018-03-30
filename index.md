@@ -1,7 +1,11 @@
 ---
 ---
 
-## Viewer
+## Welcome
+
+µCube is a framework for optomechanics design, which is compatible with 3D printing. It is also an assembly standard for designing, building and sharing optical modules. µCube is implemented using OpenSCAD, a programming language for CAD modelling. This allows every component to be described as a parametric model, which can be easily shared in a form of a code.
+
+## µCube model
 <div id = "viewerContainer">
 </div>
 
