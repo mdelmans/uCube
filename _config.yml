@@ -1,4 +1,4 @@
-#theme: jekyll-theme-minimal
+theme: jekyll-theme-minimal
 show_downloads: true
 title: µCube
 description: A framework for 3D printable optomechanics
