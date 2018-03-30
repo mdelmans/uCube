@@ -1,0 +1,130 @@
+<script>
+	{% include /lib/rendering/three.min.js %}
+	{% include /lib/rendering/orbitcontrols.js %}
+	{% include /lib/rendering/dat.gui.js %}
+	{% include /lib/jscad/csg.js %}
+	{% include /lib/jscad/threecsg.js %}
+	{% include /lib/jscad/formats.js %}
+	{% include /lib/uCube.js %}
+</script>
+
+<script>
+	var scene = new THREE.Scene();
+
+	document.getElementById('viewerContainer').style='position:relative';
+	var container = document.getElementById('viewerContainer');
+	var rendererHeight = 500;
+
+	var camera = new THREE.PerspectiveCamera( 75, container.offsetWidth/rendererHeight, 0.1, 1000 );
+
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize( container.offsetWidth, rendererHeight );
+	renderer.setClearColor(new THREE.Color(0xEEEEEE, 1.0));
+	renderer.shadowMapEnabled = true;
+	container.appendChild( renderer.domElement );
+
+	var controls = new THREE.OrbitControls( camera, renderer.domElement );
+	
+	controls.autoRotate = true;
+	controls.noPan = true;
+	controls.noZoom = true;
+
+	var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+	var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+	// var cube = new THREE.Mesh( geometry, material );
+
+	var auCube = THREE.CSG.fromCSG( uCubeC().setColor(
+            [1,1,1] ) )
+
+	var material = new THREE.MeshLambertMaterial({color: 0x777777});
+
+	var myMesh = new THREE.Mesh(auCube.colorMesh.geometry, material)
+	
+	var spotLight1 = new THREE.SpotLight(0xffffff);
+	spotLight1.position.set(100, 100, 0);
+	spotLight1.castShadow = true;
+	spotLight1.intensity = 2;
+	spotLight1.angle = 1.0;
+
+	var spotLight2 = new THREE.SpotLight(0xffffff);
+	spotLight2.position.set(-100, 100, 100);
+	spotLight2.castShadow = true;
+	spotLight2.intensity = 2;
+	spotLight2.angle = 1.0;
+
+	myMesh.castShadows = true;
+	scene.add(myMesh);
+	scene.add( spotLight1 );
+	scene.add( spotLight2 );
+	
+	camera.position.set( 100,100,0);
+	controls.update();
+
+	var screw = {screwR: 1.75, capR: 3, capH: 2.5, insertH: 5, insertR: 2 };
+	var cubeSize = {size: 40, d:7, fullSize: 58, screw: screw, export: function(){
+		var a = document.createElement("a");
+		a.style = "display: none";
+		document.body.appendChild(a);
+		var auCube = uCube(cubeSize);
+		var blob = auCube.toStlBinary();
+		url = window.URL.createObjectURL(blob);
+		a.href = url;
+		a.download = 'uCube.stl';
+		a.click();
+		window.URL.revokeObjectURL(url);
+	}};
+
+
+
+	// var saveByteArray = (function () {
+	// 	    var a = document.createElement("a");
+	// 	    document.body.appendChild(a);
+	// 	    a.style = "display: none";
+	// 	    return function (data, name) {
+	// 	        var blob = new Blob(data, {type: "octet/stream"}),
+	// 	            url = window.URL.createObjectURL(blob);
+	// 	        a.href = url;
+	// 	        a.download = name;
+	// 	        a.click();
+	// 	        window.URL.revokeObjectURL(url);
+	// 	    };
+	// 	}());
+
+	console.log(cubeSize);
+	var gui = new dat.GUI({ autoPlace: false });
+
+	gui.domElement.style='position:absolute; top:0px'
+	document.getElementById('viewerContainer').appendChild(gui.domElement);
+
+	gui.add(cubeSize, 'size', 20, 100).onFinishChange(function () {
+		cubeSize.fullSize = cubeSize.size + cubeSize.d *4;
+		scene.remove(myMesh);
+		
+		var auCube = THREE.CSG.fromCSG( uCube(cubeSize).setColor([1,1,1] ) );
+		material = new THREE.MeshLambertMaterial({color: 0x777777});
+		myMesh = new THREE.Mesh(auCube.colorMesh.geometry, material);
+
+		scene.add(myMesh);
+	});
+	gui.add(cubeSize, 'd', 5, 20).onFinishChange(function () {
+		cubeSize.fullSize = cubeSize.size + cubeSize.d *4;
+		scene.remove(myMesh);
+		
+		var auCube = THREE.CSG.fromCSG( uCube(cubeSize).setColor([1,1,1] ) );
+		material = new THREE.MeshLambertMaterial({color: 0x777777});
+		myMesh = new THREE.Mesh(auCube.colorMesh.geometry, material);
+
+		scene.add(myMesh);
+	});
+	gui.add(cubeSize, 'export').name("Export STL");
+
+	var animate = function () {
+		requestAnimationFrame( animate );
+
+		controls.update();
+		renderer.render(scene, camera);
+	};
+
+	animate();
+
+</script>

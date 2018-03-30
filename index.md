@@ -3,6 +3,10 @@
 
 ![alt](img/device.png)
 
+## Viewer
+<div id = "viewerContainer">
+</div>
+
 ## Getting started
 
 1. Download and install OpenSCAD. You can get the latest version from the official [website](http://www.openscad.org).
@@ -49,4 +53,6 @@ Please check out the part collection [here](https://github.com/mdelmans/uCube/wi
 [uLightCube](https://www.hackster.io/delmans/ulightcube)
 
 ### Publication
-... 
+...
+
+{% include viewer.html %}
