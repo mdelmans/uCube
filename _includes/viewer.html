@@ -27,7 +27,10 @@
 	
 	controls.autoRotate = true;
 	controls.noPan = true;
-	controls.noZoom = true;
+	controls.minDistance = 100;
+	controls.maxDistance = 200;
+
+	// controls.noZoom = true;
 
 	var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 	var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
@@ -41,13 +44,13 @@
 	var myMesh = new THREE.Mesh(auCube.colorMesh.geometry, material)
 	
 	var spotLight1 = new THREE.SpotLight(0xffffff);
-	spotLight1.position.set(100, 100, 0);
+	spotLight1.position.set(150, 150, 0);
 	spotLight1.castShadow = true;
 	spotLight1.intensity = 2;
 	spotLight1.angle = 1.0;
 
 	var spotLight2 = new THREE.SpotLight(0xffffff);
-	spotLight2.position.set(-100, 100, 100);
+	spotLight2.position.set(-150, 150, 150);
 	spotLight2.castShadow = true;
 	spotLight2.intensity = 2;
 	spotLight2.angle = 1.0;
@@ -74,29 +77,12 @@
 		window.URL.revokeObjectURL(url);
 	}};
 
-
-
-	// var saveByteArray = (function () {
-	// 	    var a = document.createElement("a");
-	// 	    document.body.appendChild(a);
-	// 	    a.style = "display: none";
-	// 	    return function (data, name) {
-	// 	        var blob = new Blob(data, {type: "octet/stream"}),
-	// 	            url = window.URL.createObjectURL(blob);
-	// 	        a.href = url;
-	// 	        a.download = name;
-	// 	        a.click();
-	// 	        window.URL.revokeObjectURL(url);
-	// 	    };
-	// 	}());
-
-	console.log(cubeSize);
 	var gui = new dat.GUI({ autoPlace: false });
 
 	gui.domElement.style='position:absolute; top:0px'
 	document.getElementById('viewerContainer').appendChild(gui.domElement);
 
-	gui.add(cubeSize, 'size', 20, 100).onFinishChange(function () {
+	gui.add(cubeSize, 'size', 20, 80).onFinishChange(function () {
 		cubeSize.fullSize = cubeSize.size + cubeSize.d *4;
 		scene.remove(myMesh);
 		
@@ -106,7 +92,7 @@
 
 		scene.add(myMesh);
 	});
-	gui.add(cubeSize, 'd', 5, 20).onFinishChange(function () {
+	gui.add(cubeSize, 'd', 7, 20).onFinishChange(function () {
 		cubeSize.fullSize = cubeSize.size + cubeSize.d *4;
 		scene.remove(myMesh);
 		

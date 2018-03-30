@@ -210,7 +210,6 @@ var uCube = newModuleConstructor(function(cubeSize){
 		rotate([0,0,90]) ( rotateQuarters([0, -(0.5*fullSize-d), -0.5*fullSize]) (screwHole(screw, 2*d))),
 		rotate([0,90,0]) ( rotateQuarters([0, -(0.5*fullSize-d), -0.5*fullSize]) (screwHole(screw, 2*d)))
 	);
-	console.log("d: ", d);
 	return difference()(
     	union()(
     	    body,
@@ -223,7 +222,6 @@ var uCube = newModuleConstructor(function(cubeSize){
 function uCubeC(){
     var screw = {screwR: 1.75, capR: 3, capH: 2.5, insertH: 5, insertR: 2 };
     var cubeSize = {d:7, size:40, fullSize: 68, screw: screw};
-    console.log(uCube(cubeSize));
     return uCube(cubeSize);
 }
 

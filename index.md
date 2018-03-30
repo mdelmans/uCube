@@ -1,8 +1,6 @@
 ---
 ---
 
-![alt](img/device.png)
-
 ## Viewer
 <div id = "viewerContainer">
 </div>
