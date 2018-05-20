@@ -55,6 +55,6 @@ Please check out the part collection [here](https://github.com/mdelmans/uCube/wi
 [uLightCube](https://www.hackster.io/delmans/ulightcube)
 
 ### Publication
-...
+Delmans, M. & Haseloff, J., (2018). *μCube: A Framework for 3D Printable Optomechanics*. Journal of Open Hardware. 2(1), p.2. DOI: [http://doi.org/10.5334/joh.8](http://doi.org/10.5334/joh.8)
 
 {% include viewer.html %}
